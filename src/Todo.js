@@ -8,9 +8,9 @@ import {TodosContext} from './contexts/todos.context';
 
 function Todo({id, task, completed}) {
   const [isDirty, toggleIsDirty] = useToggleState(false);
-  const {removeTodo, toggleTodo} = useContext(TodosContext);
-  const handleDelete = () => removeTodo(id);
-  const handleCheck = () => toggleTodo(id);
+  const {dispatch} = useContext(TodosContext);
+  const handleDelete = () => dispatch({type: "REMOVE", id});
+  const handleCheck = () => dispatch({type:"TOGGLE", id});
   const toggleEdit = () => toggleIsDirty(!isDirty);
   
   return (
